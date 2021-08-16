@@ -3,6 +3,7 @@ import { createContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "./components/Home/Home";
 import LoginPage from "./components/LoginPage/LoginPage";
+import PosterPage from "./components/PosterPage/PosterPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const UserContext = createContext();
@@ -18,6 +19,9 @@ function App() {
           </PrivateRoute>
           <Route path="/login">
             <LoginPage></LoginPage>
+          </Route>
+          <Route exact path="/posterpage">
+            <PosterPage></PosterPage>
           </Route>
         </Switch>
       </Router>
