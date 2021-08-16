@@ -1,0 +1,13 @@
+.comment {
+  text-align: left;
+}
+.bg-white {
+  margin: 30px;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 3px 14px 5px rgba(105, 105, 105, 0.76);
+  box-shadow: 0px 3px 14px 5px rgba(134, 134, 134, 0.73);
+}
+.comment-box {
+  width: 100%;
+  border-right: none;
+}
