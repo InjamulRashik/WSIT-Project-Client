@@ -1,11 +1,14 @@
 import React from "react";
+import LoginPage from "../LoginPage/LoginPage";
 import NavBar from "../NavBar/NavBar";
 import Post from "../Post/Post";
 
 const Home = () => {
   return (
     <div>
-      <Post></Post>
+      {/* <NavBar></NavBar>
+      <Post></Post> */}
+      <LoginPage></LoginPage>
     </div>
   );
 };

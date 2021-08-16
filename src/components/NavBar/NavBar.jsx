@@ -1,39 +1,23 @@
 import React from "react";
+import { Container, Navbar } from "react-bootstrap";
 import "./NavBar.css";
 
 const NavBar = () => {
   return (
     <div>
-      <nav className="mb-5">
-        <div class="menu-icon">
-          <i class="fa fa-bars fa-2x"></i>
-        </div>
-        <div class="logo">
-          <h4>Budget Reddit</h4>
-        </div>
-        <div class="menu">
-          <ul>
-            <li>
-              <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">About</a>
-            </li>
-            <li>
-              <a href="#">Blog</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <Navbar>
+        <Container>
+          <Navbar.Brand className="text-white" href="#home">
+            Budget Reddit For WSIT
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text className="text-white">
+              Signed in as: InjamulRashik
+            </Navbar.Text>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </div>
   );
 };
