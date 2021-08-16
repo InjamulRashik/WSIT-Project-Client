@@ -4,14 +4,6 @@ import logo from "../../assets/avatar.png";
 import "../Post/Post.css";
 
 const SinglePost = () => {
-  const handleAcClick = () => {
-    var x = document.getElementById("acHead");
-    if (x.innerHTML === "Hide Comments") {
-      x.innerHTML = "Show Comments";
-    } else {
-      x.innerHTML = "Hide Comments";
-    }
-  };
   return (
     <div>
       <div className="container ">
@@ -26,11 +18,8 @@ const SinglePost = () => {
                 <p>Upvote/Downvote</p>
                 <Accordion className="mb-4" defaultActiveKey="0">
                   <Accordion.Item eventKey="1">
-                    <Accordion.Header
-                      onClick={handleAcClick}
-                      className="font-weight-bold"
-                    >
-                      <p id="acHead">Show Comments</p>
+                    <Accordion.Header className="font-weight-bold">
+                      <p id="acHead">Comments</p>
                     </Accordion.Header>
                     <Accordion.Body>
                       <div className="row">
