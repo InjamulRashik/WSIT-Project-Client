@@ -20,9 +20,9 @@ function App() {
           <Route path="/login">
             <LoginPage></LoginPage>
           </Route>
-          <Route exact path="/posterpage">
+          <PrivateRoute exact path="/posterpage">
             <PosterPage></PosterPage>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
     </UserContext.Provider>
