@@ -25,6 +25,7 @@ const PosterPage = () => {
       name: loggedInUser.name,
       photo: loggedInUser.photo,
       postDetails: postBody,
+      comments: [],
     };
     fetch("http://localhost:5000/addPost", {
       method: "POST",
