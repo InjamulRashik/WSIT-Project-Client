@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Accordion } from "react-bootstrap";
+import { UserContext } from "../../App";
 import logo from "../../assets/avatar.png";
 import "../Post/Post.css";
 
 const SinglePost = (props) => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const { name, photo, postDetails } = props.allpost;
   return (
     <div>
@@ -12,7 +14,7 @@ const SinglePost = (props) => {
           <div className="col">
             <div className="row bg-white p-4">
               <div className="col-md-2">
-                <img width="70" src={photo} alt="" />
+                <img className="rounded-circle" width="70" src={photo} alt="" />
               </div>
               <div className="col-md-10 text-dark comment">
                 <h5 className="pt-2">{name}</h5>
@@ -26,12 +28,13 @@ const SinglePost = (props) => {
                     <Accordion.Body>
                       <div className="row">
                         <div className="col-md-10 d-flex">
-                          <img width="60" src={logo} alt="" />
+                          <img width="60" src={loggedInUser.photo} alt="" />
                           <input
                             className="form-control comment-box"
                             type="text"
                             name=""
                             id=""
+                            placeholder={`Comment As ${loggedInUser.name}`}
                           />
                           <button className="btn btn-primary comment-btn">
                             Comment
