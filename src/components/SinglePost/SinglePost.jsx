@@ -3,7 +3,8 @@ import { Accordion } from "react-bootstrap";
 import logo from "../../assets/avatar.png";
 import "../Post/Post.css";
 
-const SinglePost = () => {
+const SinglePost = (props) => {
+  const { name, photo, postDetails } = props.allpost;
   return (
     <div>
       <div className="container ">
@@ -11,10 +12,11 @@ const SinglePost = () => {
           <div className="col">
             <div className="row bg-white p-4">
               <div className="col-md-2">
-                <img width="90" src={logo} alt="" />
+                <img width="70" src={photo} alt="" />
               </div>
               <div className="col-md-10 text-dark comment">
-                <h4 className="pt-2">This is the Post</h4>
+                <h5 className="pt-2">{name}</h5>
+                <p>{postDetails}</p>
                 <p>Upvote/Downvote</p>
                 <Accordion className="mb-4" defaultActiveKey="0">
                   <Accordion.Item eventKey="1">

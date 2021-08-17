@@ -2,17 +2,22 @@ import React, { useContext, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
+
 import { UserContext } from "../../App";
 
 const PosterPage = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  let history = useHistory();
   const [postBody, setPostBody] = useState("");
 
   const { handleSubmit } = useForm();
 
+  let history = useHistory();
+
   const handleChange = (e) => {
     setPostBody(e.target.value);
+  };
+  const handleHomePage = () => {
+    history.push("/");
   };
 
   const onSubmit = () => {
@@ -20,6 +25,7 @@ const PosterPage = () => {
       name: loggedInUser.name,
       photo: loggedInUser.photo,
       postDetails: postBody,
+      comments: [{}],
     };
     fetch("http://localhost:5000/addPost", {
       method: "POST",
@@ -28,13 +34,16 @@ const PosterPage = () => {
       },
       body: JSON.stringify(posts),
     }).then((res) => res.json());
-    window.confirm("Order Placed Successfully!");
+    window.confirm("Status Posted Successfully!");
   };
 
   return (
     <div>
       <div className="container mt-4 d-flex justify-content-center">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="container mt-4 d-flex justify-content-center"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Card
             style={{
               width: "50%",
@@ -73,10 +82,22 @@ const PosterPage = () => {
                 />{" "}
                 Posting as {loggedInUser.name}
               </Card.Title>
-              <Button variant="danger">Post Status</Button>
+              {/* <Button type="submit" variant="danger">
+                Post Status
+              </Button> */}
+              <input
+                className="btn btn-danger "
+                type="submit"
+                value="Post Status"
+              />
             </Card.Body>
           </Card>
         </form>
+      </div>
+      <div className="mt-5 d-flex justify-content-center">
+        <button onClick={handleHomePage} className="btn btn-danger ">
+          Back to Home Page
+        </button>
       </div>
     </div>
   );
