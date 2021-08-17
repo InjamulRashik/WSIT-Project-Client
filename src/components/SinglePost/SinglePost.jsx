@@ -6,7 +6,7 @@ import "../Post/Post.css";
 
 const SinglePost = (props) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  const { name, photo, postDetails } = props.allpost;
+  const { _id, name, photo, postDetails } = props.allpost;
   return (
     <div>
       <div className="container ">
@@ -36,7 +36,7 @@ const SinglePost = (props) => {
                             id=""
                             placeholder={`Comment As ${loggedInUser.name}`}
                           />
-                          <button className="btn btn-primary comment-btn">
+                          <button className="btn btn-danger comment-btn">
                             Comment
                           </button>
                         </div>
