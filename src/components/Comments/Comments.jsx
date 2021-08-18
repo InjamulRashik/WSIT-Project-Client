@@ -1,17 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../../App";
 import UserComments from "../UserComments/UserComments";
 
 const Comments = (props) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-  const [commentText, setCommentText] = useState("");
+  const [commentText, setCommentText] = useState();
   const { id } = props;
   console.log(id);
+
+  const { handleSubmit } = useForm();
+
   const handleBlur = (e) => {
     setCommentText(e.target.value);
   };
-  const postComment = (id) => {
+
+  const onSubmit = () => {
     const comments = {
       name: loggedInUser.name,
       comment: commentText,
@@ -34,7 +39,7 @@ const Comments = (props) => {
     fetch(`http://localhost:5000/comments/${id}`)
       .then((response) => response.json())
       .then((data) => setUserCommnets(data));
-  }, [id]);
+  }, []);
 
   return (
     <div>
@@ -48,23 +53,27 @@ const Comments = (props) => {
               <UserComments usercomment={usercomment}></UserComments>
             ))}
             <div className="row">
-              <div className="col-md-10 d-flex">
-                <img width="60" src={loggedInUser.photo} alt="" />
-                <input
-                  onBlur={handleBlur}
-                  className="form-control comment-box"
-                  type="text"
-                  name=""
-                  placeholder={`Comment As ${loggedInUser.name}`}
-                  required
-                />
-                <button
-                  onClick={postComment(id)}
-                  className="btn btn-danger comment-btn"
-                >
-                  Comment
-                </button>
-              </div>
+              <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
+                <div className="col-md-12 d-flex">
+                  <img width="100" src={loggedInUser.photo} alt="" />
+                  <div className="col-md-6">
+                    <input
+                      onBlur={handleBlur}
+                      className="ms-4 form-control comment-box mb-2"
+                      type="text"
+                      name=""
+                      placeholder={`Comment As ${loggedInUser.name}`}
+                      required
+                    />
+                    <input
+                      type="submit"
+                      // onClick={postComment(id)}
+                      className="btn btn-danger comment-btn ms-4"
+                      value="Comment"
+                    />
+                  </div>
+                </div>
+              </form>
             </div>
           </Accordion.Body>
         </Accordion.Item>
