@@ -10,8 +10,8 @@ const Post = () => {
   }, []);
   return (
     <div>
-      {allPosts.map((allpost) => (
-        <SinglePost allpost={allpost}></SinglePost>
+      {allPosts.map((allpost, i) => (
+        <SinglePost key={i} allpost={allpost}></SinglePost>
       ))}
     </div>
   );

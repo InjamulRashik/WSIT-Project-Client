@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./LoginPage.css";
 import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../../firebase.config";
-import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import { useHistory, useLocation } from "react-router-dom";
@@ -30,6 +29,7 @@ const LoginPage = () => {
           photo: photoURL,
         };
         setLoggedInUser(signedInUser);
+
         history.replace(from);
       })
       .catch((error) => {});

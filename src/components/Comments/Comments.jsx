@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router";
 import { UserContext } from "../../App";
 import UserComments from "../UserComments/UserComments";
 
@@ -8,19 +9,26 @@ const Comments = (props) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
   const [commentText, setCommentText] = useState();
   const { id } = props;
-  console.log(id);
 
-  const { handleSubmit } = useForm();
+  const { handleSubmit, reset, register } = useForm();
 
   const handleBlur = (e) => {
     setCommentText(e.target.value);
   };
 
-  const onSubmit = () => {
+  const fetchComments = () => {
+    fetch(`http://localhost:5000/comments/${id}`)
+      .then((response) => response.json())
+      .then((data) => setUserCommnets(data));
+  };
+
+  const onSubmit = (data) => {
     const comments = {
       name: loggedInUser.name,
-      comment: commentText,
+      photo: loggedInUser.photo,
+      comment: data.Comment,
     };
+
     fetch(`http://localhost:5000/addComment/${id}`, {
       method: "PATCH",
       headers: {
@@ -29,16 +37,17 @@ const Comments = (props) => {
       },
       body: JSON.stringify(comments),
     })
-      .then((res) => res.json())
       .then((data) => {
-        console.log("Updated");
+        reset();
+        fetchComments();
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
   const [userComments, setUserCommnets] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/comments/${id}`)
-      .then((response) => response.json())
-      .then((data) => setUserCommnets(data));
+    fetchComments();
   }, []);
 
   return (
@@ -50,7 +59,10 @@ const Comments = (props) => {
           </Accordion.Header>
           <Accordion.Body>
             {userComments.map((usercomment) => (
-              <UserComments usercomment={usercomment}></UserComments>
+              <UserComments
+                key={usercomment.id}
+                usercomment={usercomment}
+              ></UserComments>
             ))}
             <div className="row">
               <form className="form-control" onSubmit={handleSubmit(onSubmit)}>
@@ -58,10 +70,9 @@ const Comments = (props) => {
                   <img width="100" src={loggedInUser.photo} alt="" />
                   <div className="col-md-6">
                     <input
-                      onBlur={handleBlur}
+                      {...register("Comment")}
                       className="ms-4 form-control comment-box mb-2"
                       type="text"
-                      name=""
                       placeholder={`Comment As ${loggedInUser.name}`}
                       required
                     />
