@@ -8,15 +8,15 @@ const Comments = (props) => {
   const [commentText, setCommentText] = useState("");
   const { id } = props;
   console.log(id);
-  const handleChange = (e) => {
+  const handleBlur = (e) => {
     setCommentText(e.target.value);
   };
-  async function postComment(id) {
+  const postComment = (id) => {
     const comments = {
       name: loggedInUser.name,
       comment: commentText,
     };
-    await fetch(`http://localhost:5000/addComment/${id}`, {
+    fetch(`http://localhost:5000/addComment/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const Comments = (props) => {
       .then((data) => {
         console.log("Updated");
       });
-  }
+  };
   const [userComments, setUserCommnets] = useState([]);
   useEffect(() => {
     fetch(`http://localhost:5000/comments/${id}`)
@@ -51,11 +51,12 @@ const Comments = (props) => {
               <div className="col-md-10 d-flex">
                 <img width="60" src={loggedInUser.photo} alt="" />
                 <input
-                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="form-control comment-box"
                   type="text"
                   name=""
                   placeholder={`Comment As ${loggedInUser.name}`}
+                  required
                 />
                 <button
                   onClick={postComment(id)}

@@ -21,7 +21,7 @@ const SinglePost = (props) => {
               <div className="col-md-10 text-dark comment">
                 <h5 className="pt-2">{name}</h5>
                 <p>{postDetails}</p>
-                <p>Upvote/Downvote</p>
+                <div></div>
                 <Comments id={_id}></Comments>
               </div>
             </div>
