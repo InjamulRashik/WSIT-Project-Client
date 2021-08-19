@@ -4,7 +4,7 @@ import SinglePost from "../SinglePost/SinglePost";
 const Post = () => {
   const [allPosts, setAllPosts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allPosts")
+    fetch("https://glacial-tundra-84158.herokuapp.com/allPosts")
       .then((response) => response.json())
       .then((data) => setAllPosts(data.reverse()));
   }, []);

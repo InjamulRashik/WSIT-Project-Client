@@ -16,7 +16,7 @@ const Comments = (props) => {
   };
 
   const fetchComments = () => {
-    fetch(`http://localhost:5000/comments/${id}`)
+    fetch(`https://glacial-tundra-84158.herokuapp.com/comments/${id}`)
       .then((response) => response.json())
       .then((data) => setUserCommnets(data));
   };
@@ -28,7 +28,7 @@ const Comments = (props) => {
       comment: data.Comment,
     };
 
-    fetch(`http://localhost:5000/addComment/${id}`, {
+    fetch(`https://glacial-tundra-84158.herokuapp.com/addComment/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

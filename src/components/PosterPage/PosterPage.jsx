@@ -29,7 +29,7 @@ const PosterPage = () => {
       downvote: 0,
       comments: [],
     };
-    fetch("http://localhost:5000/addPost", {
+    fetch("https://glacial-tundra-84158.herokuapp.com/addPost", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

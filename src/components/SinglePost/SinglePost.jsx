@@ -19,7 +19,7 @@ const SinglePost = (props) => {
     } else if (downVote > 0) {
       setDownVote((p) => p - 1);
     }
-    fetch(`http://localhost:5000/updateVote/${_id}`, {
+    fetch(`https://glacial-tundra-84158.herokuapp.com/updateVote/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ const SinglePost = (props) => {
     } else {
       setUpVote((p) => p - 1);
     }
-    fetch(`http://localhost:5000/updateVote/${_id}`, {
+    fetch(`https://glacial-tundra-84158.herokuapp.com/updateVote/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
