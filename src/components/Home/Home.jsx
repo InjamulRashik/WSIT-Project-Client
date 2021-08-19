@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import LoginPage from "../LoginPage/LoginPage";
 import NavBar from "../NavBar/NavBar";
 import Post from "../Post/Post";

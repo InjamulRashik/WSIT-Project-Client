@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 import { UserContext } from "../../App";
 
@@ -36,7 +36,10 @@ const PosterPage = () => {
       },
       body: JSON.stringify(posts),
     }).then((res) => res.json());
-    window.confirm("Status Posted Successfully!");
+    // window.confirm("Status Posted Successfully!");
+    if (window.confirm("Status Posted Successfully!")) {
+      history.push("/");
+    }
   };
 
   return (

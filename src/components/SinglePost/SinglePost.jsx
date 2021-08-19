@@ -14,6 +14,11 @@ const SinglePost = (props) => {
 
   const handleUpvoteCLick = () => {
     setUpVote((p) => p + 1);
+    if (downVote === 0) {
+      setDownVote(downVote);
+    } else {
+      setDownVote((p) => p - 1);
+    }
     fetch(`http://localhost:5000/updateVote/${_id}`, {
       method: "PUT",
       headers: {
@@ -22,7 +27,7 @@ const SinglePost = (props) => {
       },
       body: JSON.stringify({
         upvote: upVote + 1,
-        downvote: `${downvote}`,
+        downvote: downVote - 1,
       }),
     })
       .then((res) => res.json())
@@ -32,6 +37,11 @@ const SinglePost = (props) => {
   };
   const handleDownvoteCLick = () => {
     setDownVote((p) => p + 1);
+    if (upVote === 0) {
+      setUpVote(upVote);
+    } else {
+      setUpVote((p) => p - 1);
+    }
     fetch(`http://localhost:5000/updateVote/${_id}`, {
       method: "PUT",
       headers: {
@@ -39,8 +49,8 @@ const SinglePost = (props) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        upvote: `${upvote}`,
-        downvote: downvote + 1,
+        upvote: upVote - 1,
+        downvote: downVote + 1,
       }),
     })
       .then((res) => res.json())
@@ -59,21 +69,46 @@ const SinglePost = (props) => {
                 <img className="rounded-circle" width="70" src={photo} alt="" />
               </div>
               <div className="col-md-10 text-dark comment">
-                <h5 className="pt-2">{name}</h5>
-                <p>{postDetails}</p>
-                <div>
-                  <div>
-                    <h2>{upVote}</h2>
-                    <button onClick={(id) => handleUpvoteCLick(id)}>
-                      Upvote
-                    </button>
-                  </div>
-                  <div>
-                    <h2>{downVote}</h2>
-                    <button onClick={(id) => handleDownvoteCLick(id)}>
-                      DownVote
-                    </button>
-                  </div>
+                <h6 style={{ color: "red" }} className="pt-2 text-danger">
+                  {name}
+                </h6>
+                <p style={{ fontSize: "40px" }}>"{postDetails}"</p>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <b>
+                    {" "}
+                    <p style={{ fontSize: "22px", paddingTop: "15px" }}>
+                      {upVote}
+                    </p>
+                  </b>
+                  <svg
+                    onClick={(id) => handleUpvoteCLick(id)}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="25"
+                    fill="green"
+                    class="bi bi-arrow-up-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+                  </svg>
+                  <svg
+                    onClick={(id) => handleDownvoteCLick(id)}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="50"
+                    height="25"
+                    fill="red"
+                    class="bi bi-arrow-down-circle-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                  </svg>
+
+                  <b>
+                    {" "}
+                    <p style={{ fontSize: "22px", paddingTop: "15px" }}>
+                      {downVote}
+                    </p>
+                  </b>
                 </div>
                 <Comments id={_id}></Comments>
               </div>

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Accordion } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
 import { UserContext } from "../../App";
 import UserComments from "../UserComments/UserComments";
 
@@ -71,7 +70,7 @@ const Comments = (props) => {
                   <div className="col-md-6">
                     <input
                       {...register("Comment")}
-                      className="ms-4 form-control comment-box mb-2"
+                      className="ms-2 form-control comment-box mb-2"
                       type="text"
                       placeholder={`Comment As ${loggedInUser.name}`}
                       required
@@ -79,7 +78,7 @@ const Comments = (props) => {
                     <input
                       type="submit"
                       // onClick={postComment(id)}
-                      className="btn btn-danger comment-btn ms-4"
+                      className="btn btn-danger comment-btn ms-2"
                       value="Comment"
                     />
                   </div>
