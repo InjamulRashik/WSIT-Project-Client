@@ -9,6 +9,9 @@ const NavBar = () => {
   const handleLogoClick = () => {
     history.push("/");
   };
+  const handleSignOut = () => {
+    window.location.reload();
+  };
   return (
     <div>
       <Navbar>
@@ -29,6 +32,9 @@ const NavBar = () => {
                 src={loggedInUser.photo}
                 alt=""
               />
+              <button onClick={handleSignOut} className="btn btn-danger">
+                Logout
+              </button>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

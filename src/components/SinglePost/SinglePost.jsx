@@ -14,7 +14,7 @@ const SinglePost = (props) => {
 
   const handleUpvoteCLick = () => {
     setUpVote((p) => p + 1);
-    if (downVote === 0) {
+    if (downVote < 0) {
       setDownVote(downVote);
     } else {
       setDownVote((p) => p - 1);
@@ -37,7 +37,7 @@ const SinglePost = (props) => {
   };
   const handleDownvoteCLick = () => {
     setDownVote((p) => p + 1);
-    if (upVote === 0) {
+    if (upVote <= 0) {
       setUpVote(upVote);
     } else {
       setUpVote((p) => p - 1);
