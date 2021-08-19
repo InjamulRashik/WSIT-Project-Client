@@ -16,7 +16,7 @@ const SinglePost = (props) => {
     setUpVote((p) => p + 1);
     if (downVote < 0) {
       setDownVote(downVote);
-    } else {
+    } else if (downVote > 0) {
       setDownVote((p) => p - 1);
     }
     fetch(`http://localhost:5000/updateVote/${_id}`, {
@@ -27,7 +27,7 @@ const SinglePost = (props) => {
       },
       body: JSON.stringify({
         upvote: upVote + 1,
-        downvote: downVote - 1,
+        downvote: downVote,
       }),
     })
       .then((res) => res.json())
@@ -49,7 +49,7 @@ const SinglePost = (props) => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        upvote: upVote - 1,
+        upvote: upVote,
         downvote: downVote + 1,
       }),
     })
