@@ -32,7 +32,7 @@ const NavBar = () => {
                 src={loggedInUser.photo}
                 alt=""
               />
-              <button onClick={handleSignOut} className="btn btn-danger">
+              <button onClick={handleSignOut} className="btn btn-danger ms-4">
                 Logout
               </button>
             </Navbar.Text>

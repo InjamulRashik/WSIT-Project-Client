@@ -41,5 +41,9 @@
 .google-btn:active {
   background: #1669f2;
 }
+.loginHeader {
+  text-align: center;
+  padding-top: 300px;
+}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);

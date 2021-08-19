@@ -6,8 +6,9 @@ const Post = () => {
   useEffect(() => {
     fetch("http://localhost:5000/allPosts")
       .then((response) => response.json())
-      .then((data) => setAllPosts(data));
+      .then((data) => setAllPosts(data.reverse()));
   }, []);
+
   return (
     <div>
       {allPosts.map((allpost, i) => (

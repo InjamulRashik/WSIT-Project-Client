@@ -37,6 +37,18 @@ const LoginPage = () => {
 
   return (
     <div>
+      <div>
+        <h1 className="loginHeader">
+          Welcome to{" "}
+          <span
+            style={{
+              color: "red",
+            }}
+          >
+            Budget Reddit!
+          </span>
+        </h1>
+      </div>
       <div onClick={handleGoogleSignIn} className="login-button">
         <div className="google-btn">
           <div className="google-icon-wrapper">
